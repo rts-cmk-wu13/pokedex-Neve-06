@@ -10,11 +10,15 @@ img{
     width: 100%;
 }
 
+a{
+    text-decoration: none;
+}
+
 /* ---------------------subgrid, but without the responsivness--------------------- */
 
 #root{
     display: grid;
-    grid-template-columns: [fullw-start] 1.5rem [content-start] 1fr [content-end] 1.5rem [fullw-end];
+    grid-template-columns: [fullw-start] 1.5rem [content-start] repeat(3, 1fr) [content-end] 1.5rem [fullw-end];
 
 }
 
@@ -58,4 +62,10 @@ footer>* {
 .no-columns {
     grid-column: content;
     display: block;
+}
+
+/* -------------------------pokemon text-------------------------------- */
+
+.pokedex__pokemon-name{
+    text-align: center;
 }
