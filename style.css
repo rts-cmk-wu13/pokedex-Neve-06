@@ -22,6 +22,19 @@ a{
 
 }
 
+
+@media screen and (width >=64rem) {
+    #root {
+        grid-template-columns:
+            [fullw-start] 1fr [content-start] repeat(8, 10rem) [content-end] 1fr [fullw-end];
+    }
+
+    .pokedex__pokemon-figure{
+        height: 10rem;
+    }
+}
+
+
 #root > header, #root > main, #root > footer{
     grid-column: fullw;
     display: grid;
@@ -68,4 +81,29 @@ footer>* {
 
 .pokedex__pokemon-name{
     text-align: center;
+}
+
+.pokedex__pokemon-number{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+/* -------------------------pokemon containers-------------------------------- */
+
+.pokelist{
+    gap: 0.5rem;
+}
+
+.pokedex__pokemon-container{
+    background-color: #EFEFEF;
+    padding: 0.5rem;
+    position: relative;
+}
+
+.pokedex__pokemon-link{
+    position: absolute; inset: 0;
+}
+
+.pokedex__pokemon-figure{
+    height: 6rem;
 }
