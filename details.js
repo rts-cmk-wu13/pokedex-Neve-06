@@ -12,7 +12,7 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
 .then(response => response.json())
 .then(pokemon => {
     sectionElm.innerHTML = `
-        <figure class="card">
+        <figure class="pokedex__pokemon-details">
         <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name}">
         </figure>
     `
