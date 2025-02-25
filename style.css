@@ -116,3 +116,10 @@ footer>* {
 .pokedex__pokemon-stats{
     grid-column: span 3;
 }
+.pokedex__pokemon-progressbar{
+    width: 100%;
+}
+
+meter{
+    width: 100%;
+}
