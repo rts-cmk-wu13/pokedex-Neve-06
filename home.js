@@ -14,7 +14,14 @@ const artworkUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/spr
 const observer = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
         if(entry.isIntersecting){
+            currentOffset = currentOffset + 50;
+            if (currentOffset < 1304){
 
+                fetchPokemon(currentOffset)
+            } else {
+                console.log("could not fetch pokemon");
+                
+            }
         }
     })
 })
@@ -33,6 +40,7 @@ document.querySelector("header").append(headerElm)
 let sectionElm = document.createElement("section")
 sectionElm.className = "pokelist"
 
+let currentOffset = 0 
 
 function fetchPokemon(offset){
 
@@ -42,9 +50,9 @@ function fetchPokemon(offset){
         return response.json()
     }).then(
         function(data) {
-            sectionElm.innerHTML =  data.results.map(pokemon => `
+            sectionElm.innerHTML +=  data.results.map(pokemon => `
                 <article class="pokedex__pokemon-container">
-                <p class="pokedex__pokemon-number">#${getIdFromPokemon(pokemon.url).padStart(4, "0")}</p>
+                <p class="pokedex__pokemon-number">#${getIdFromPokemon(pokemon.url).padStart(3, "0")}</p>
                 <figure class="pokedex__pokemon-figure">
                 <img src="${artworkUrl}/${getIdFromPokemon(pokemon.url)}.png" alt="${pokemon.name}">
                 </figure>
@@ -52,10 +60,14 @@ function fetchPokemon(offset){
                 <a class="pokedex__pokemon-link" href="/details.html?name=${pokemon.name}"></a>
                 </article>
             `).join("")
-
+            
+            let observedPokemon = sectionElm.querySelector("article:nth-last-child(5)")
+            observer.observe(observedPokemon)
         }
     )
     
     document.querySelector("main").append(sectionElm)
     
 }
+
+fetchPokemon(currentOffset)
