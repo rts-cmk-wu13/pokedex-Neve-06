@@ -10,6 +10,15 @@ function getIdFromPokemon(pokemonUrl) {
 
 const artworkUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork"
 
+
+const observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+        if(entry.isIntersecting){
+
+        }
+    })
+})
+
 let headerElm = document.createElement("nav")
 headerElm.innerHTML = `
     <nav>
@@ -24,7 +33,11 @@ document.querySelector("header").append(headerElm)
 let sectionElm = document.createElement("section")
 sectionElm.className = "pokelist"
 
-fetch("https://pokeapi.co/api/v2/pokemon")
+
+function fetchPokemon(offset){
+
+    
+    fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=50`)
     .then(function(response) {
         return response.json()
     }).then(
@@ -42,6 +55,7 @@ fetch("https://pokeapi.co/api/v2/pokemon")
 
         }
     )
-
-document.querySelector("main").append(sectionElm)
-
+    
+    document.querySelector("main").append(sectionElm)
+    
+}
