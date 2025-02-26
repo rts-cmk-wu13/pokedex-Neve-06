@@ -25,6 +25,14 @@ const observer = new IntersectionObserver(function(entries){
         }
     })
 })
+const imageObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+        if(entry.isIntersecting){
+            entry.target.src = entry.target.dataset.imagesrc
+            imageObserver.unobserve(entry.target)
+        }
+    })
+})
 
 let headerElm = document.createElement("nav")
 headerElm.innerHTML = `
@@ -54,7 +62,7 @@ function fetchPokemon(offset){
                 <article class="pokedex__pokemon-container">
                 <p class="pokedex__pokemon-number">#${getIdFromPokemon(pokemon.url).padStart(3, "0")}</p>
                 <figure class="pokedex__pokemon-figure">
-                <img src="${artworkUrl}/${getIdFromPokemon(pokemon.url)}.png" alt="${pokemon.name}">
+                <img loading="lazy" class="pokedex__pokemon-img" src="/img/placeholder.png" data-imagesrc="${artworkUrl}/${getIdFromPokemon(pokemon.url)}.png" alt="${pokemon.name}">
                 </figure>
                 <p class="pokedex__pokemon-name">${pokemon.name}</p>
                 <a class="pokedex__pokemon-link" href="/details.html?name=${pokemon.name}"></a>
@@ -63,6 +71,12 @@ function fetchPokemon(offset){
             
             let observedPokemon = sectionElm.querySelector("article:nth-last-child(5)")
             observer.observe(observedPokemon)
+
+            let observedImages = sectionElm.querySelectorAll(".pokedex__pokemon-img")
+            console.log(observedImages);
+            observedImages.forEach(function(observedImage){
+                imageObserver.observe(observedImage)
+            })
         }
     )
     
