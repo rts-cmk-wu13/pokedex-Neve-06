@@ -92,6 +92,9 @@ footer>* {
 
 .pokelist{
     gap: 0.5rem;
+    background-color: white;
+    padding-inline: 0.25rem
+    ;
 }
 
 .pokedex__pokemon-container{
@@ -133,4 +136,15 @@ meter{
 .pokedex__pokemon-flavortext{
     grid-column: span 3;
     text-align: center;
+}
+
+/* -------------------------------main page------------------------------- */
+
+.pokedex__header{
+    background-color: red;
+    color: white;
+}
+
+.pokedex__main{
+    background-color: red;
 }
