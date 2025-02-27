@@ -26,19 +26,21 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
         <figure class="pokedex__pokemon-details">
         <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name}">
         </figure>
-       
         <div class="pokedex__pokemon-info columns">
         <section>
             <p>${pokemon.weight} kg</p>
+            <p>weight</p>
         </section>
         <section>
             <p>${pokemon.height} cm</p>
+            <p>height</p>
         </section>
         <section>
            ${pokemon.abilities.map(function(singleAbility){
             return `
-                ${singleAbility.ability.name}
+                <p>${singleAbility.ability.name}</p>
             `
+            
            })}
         </section>
         <section class="pokedex__pokemon-flavortext">
