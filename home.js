@@ -80,7 +80,7 @@ function fetchPokemon(offset){
         }
     )
     
-    document.querySelector("main").append(sectionElm)
+    document.querySelector(".pokedex__main").append(sectionElm)
     
 }
 

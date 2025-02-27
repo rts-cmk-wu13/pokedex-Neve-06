@@ -64,5 +64,5 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
 
     `
 })
-document.querySelector("main").append(sectionElm);
+document.querySelector(".pokedex__main-details").append(sectionElm);
 })
