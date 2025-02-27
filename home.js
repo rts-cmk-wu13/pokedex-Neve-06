@@ -36,10 +36,12 @@ const imageObserver = new IntersectionObserver(function(entries){
 
 let headerElm = document.createElement("nav")
 headerElm.innerHTML = `
-    <nav>
         <h1>Pokedex</h1>
-    </nav>
-`
+        <form class="pokedex__pokemon-search"  action="details.html">
+            <input type="search" name="name" id="name">
+        </form>
+        
+    `
 
 document.querySelector("header").append(headerElm)
 
