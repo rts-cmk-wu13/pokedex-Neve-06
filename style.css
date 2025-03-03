@@ -138,7 +138,7 @@ meter{
     text-align: center;
 }
 
-/* -------------------------------main page------------------------------- */
+/* -------------------------------home page------------------------------- */
 
 .pokedex__header{
     background-color: red;
@@ -147,4 +147,8 @@ meter{
 
 .pokedex__main{
     background-color: red;
+}
+
+.pokedex__pokemon-search{
+    grid-column: span 3;
 }
