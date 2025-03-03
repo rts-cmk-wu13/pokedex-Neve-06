@@ -9,19 +9,30 @@ let sectionElm = document.createElement("section")
 // sectionElm.classList.add("columns")
 
 fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
-.then(response => response.json())
+.then(response => {
+    console.log(response.ok);
+    
+    if(!response.ok) {
+        throw new Error("Den findes ikke!!! !")
+    }
+    return response.json()
+})
 .then(pokemon => {
-    console.log(pokemon)
-
+            sectionElm.innerHTML = `
+            
+            <h2>${pokemon.name}</h2>
+            `
     fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemon.id}/`)
     .then(response => response.json())
     .then(species => {
 
+      
+            
+    
+
         let flavorTextEntry = species.flavor_text_entries.find(entry => entry.language.name === "en");
         let flavorText = flavorTextEntry ? flavorTextEntry.flavor_text.replace(/\n|\f/g, ' ') : "No description available.";
-
-
-    
+        
     sectionElm.innerHTML = `
         <figure class="pokedex__pokemon-details">
         <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name}">
@@ -64,5 +75,13 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
 
     `
 })
-document.querySelector(".pokedex__main-details").append(sectionElm);
+}).catch(function(error) {
+    console.log(error)
+    
+    sectionElm.innerHTML = `
+        <h2>${error.message}</h2>
+        <p>Go back to the <a href="index.html">details view</a></p>
+        `
+
 })
+document.querySelector(".pokedex__main-details").append(sectionElm);
